@@ -2,10 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import img1 from '../assets/Products/AP-166.jpg';
-import img2 from '../assets/Products/AP-180.jpg';
-import img3 from '../assets/Workshops/IMG_6872.jpg';
-import img4 from '../assets/Products/AP-192.jpg';
+import { getCloudinaryUrl } from '../utils/cloudinary';
 
 // Assuming we can re-use some assets or use a placeholder if needed, 
 // but styling it as a text-heavy or mix section.
@@ -71,7 +68,7 @@ const GalleryTeaser = () => {
                         transition={{ delay: 0.2 }}
                         className="aspect-square rounded-[2rem] overflow-hidden"
                     >
-                        <img src={img1} alt="Pottery Masterpiece" loading="lazy" className="w-full h-full object-cover" />
+                        <img src={getCloudinaryUrl('Products/AP-166.jpg')} alt="Pottery Masterpiece" loading="lazy" className="w-full h-full object-cover" />
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
@@ -80,7 +77,7 @@ const GalleryTeaser = () => {
                         transition={{ delay: 0.3 }}
                         className="aspect-video rounded-[2rem] mt-12 overflow-hidden"
                     >
-                        <img src={img3} alt="Workshop Vibes" loading="lazy" className="w-full h-full object-cover" />
+                        <img src={getCloudinaryUrl('Workshops/IMG_6872.jpg')} alt="Workshop Vibes" loading="lazy" className="w-full h-full object-cover" />
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
@@ -89,7 +86,7 @@ const GalleryTeaser = () => {
                         transition={{ delay: 0.4 }}
                         className="aspect-[3/4] rounded-[2rem] -mt-12 overflow-hidden"
                     >
-                        <img src={img2} alt="Product Shot" loading="lazy" className="w-full h-full object-cover" />
+                        <img src={getCloudinaryUrl('Products/AP-180.jpg')} alt="Product Shot" loading="lazy" className="w-full h-full object-cover" />
                     </motion.div>
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
@@ -98,7 +95,7 @@ const GalleryTeaser = () => {
                         transition={{ delay: 0.5 }}
                         className="aspect-square rounded-[2rem] overflow-hidden"
                     >
-                        <img src={img4} alt="Detailed Pottery" loading="lazy" className="w-full h-full object-cover" />
+                        <img src={getCloudinaryUrl('Products/AP-192.jpg')} alt="Detailed Pottery" loading="lazy" className="w-full h-full object-cover" />
                     </motion.div>
                 </div>
             </div>

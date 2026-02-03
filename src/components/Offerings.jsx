@@ -1,8 +1,9 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Palette, Users } from 'lucide-react';
-import customImg from '../assets/Pottery/AP-12.jpg';
-import workshopImg from '../assets/Pottery/AP-13.jpg';
+import { Link } from 'react-router-dom';
+import { getCloudinaryUrl } from '../utils/cloudinary';
+import { Palette, Users } from 'lucide-react'; // Re-adding these as they are used in the new structure
 
 const Offerings = () => {
     return (
@@ -30,12 +31,18 @@ const Offerings = () => {
                         className="group bg-background p-10 rounded-[3rem] shadow-xl hover:shadow-2xl transition-all duration-300 border border-green-light/20 hover:border-pink-hot/50 relative overflow-hidden"
                     >
                         {/* Background Image */}
-                        <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity">
-                            <img src={customImg} alt="Pottery Background" loading="lazy" className="w-full h-full object-cover" />
-                        </div>
-
-                        <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:opacity-20 transition-opacity z-10">
-                            <Palette size={120} />
+                        <div className="relative h-[400px] rounded-[2rem] overflow-hidden group">
+                            <img
+                                src={getCloudinaryUrl('Pottery/AP-12.jpg')}
+                                alt="Custom Orders"
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300"></div>
+                            {/* The Palette icon was originally in a separate div, now it's placed here as per instruction,
+                                but its positioning might need adjustment if it's meant to be an overlay on the image. */}
+                            <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:opacity-20 transition-opacity z-10 text-white">
+                                <Palette size={120} />
+                            </div>
                         </div>
                         <div className="relative z-10">
                             <h3 className="text-4xl font-serif text-green-deep mb-6">Custom Orders</h3>
@@ -53,9 +60,9 @@ const Offerings = () => {
                                     Made just for you. No shortcuts.
                                 </li>
                             </ul>
-                            <a href="/custom-orders" className="inline-block bg-green-light/30 text-green-deep px-8 py-3 rounded-full font-serif hover:bg-green-deep hover:text-white transition-colors">
+                            <Link to="/custom-orders" className="inline-block bg-green-light/30 text-green-deep px-8 py-3 rounded-full font-serif hover:bg-green-deep hover:text-white transition-colors">
                                 Learn More
-                            </a>
+                            </Link>
                         </div>
                     </motion.div>
 
@@ -68,12 +75,18 @@ const Offerings = () => {
                         className="group bg-green-deep text-background p-10 rounded-[3rem] shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden"
                     >
                         {/* Background Image */}
-                        <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity mix-blend-overlay">
-                            <img src={workshopImg} alt="Workshop Background" loading="lazy" className="w-full h-full object-cover grayscale" />
-                        </div>
-
-                        <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:opacity-20 transition-opacity text-white z-10">
-                            <Users size={120} />
+                        <div className="relative h-[400px] rounded-[2rem] overflow-hidden group">
+                            <img
+                                src={getCloudinaryUrl('Pottery/AP-13.jpg')}
+                                alt="Workshops"
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition-colors duration-300"></div>
+                            {/* The Users icon was originally in a separate div, now it's placed here as per instruction,
+                                but its positioning might need adjustment if it's meant to be an overlay on the image. */}
+                            <div className="absolute top-0 right-0 p-10 opacity-10 group-hover:opacity-20 transition-opacity text-white z-10">
+                                <Users size={120} />
+                            </div>
                         </div>
                         <div className="relative z-10">
                             <h3 className="text-4xl font-serif text-white mb-6">Workshops</h3>

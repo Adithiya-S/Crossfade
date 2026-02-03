@@ -1,15 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import potteryImg from '../assets/Pottery/AP-10.jpg'; // Example asset
-import productImg from '../assets/Products/AP-166.jpg'; // Example asset
-import workshopImg from '../assets/Workshops/IMG_6872.jpg'; // Example asset
+import { getCloudinaryUrl } from '../utils/cloudinary';
 
 const categories = [
     {
         id: 'pottery',
         title: 'Pottery',
-        image: potteryImg,
+        image: getCloudinaryUrl('Pottery/AP-10.jpg'),
         desc: 'Hand-thrown masterpeices.',
         color: 'bg-green-deep',
         textColor: 'text-white'
@@ -17,7 +15,7 @@ const categories = [
     {
         id: 'products',
         title: 'Products',
-        image: productImg,
+        image: getCloudinaryUrl('Products/AP-166.jpg'),
         desc: 'Curated goods for your home.',
         color: 'bg-pink-pale',
         textColor: 'text-green-deep'
@@ -25,7 +23,7 @@ const categories = [
     {
         id: 'workshops',
         title: 'Workshops',
-        image: workshopImg,
+        image: getCloudinaryUrl('Workshops/IMG_6872.jpg'),
         desc: 'Moments of creation.',
         color: 'bg-green-light',
         textColor: 'text-green-deep'

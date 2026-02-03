@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import workshopImg from '../assets/Pottery/AP-13.jpg';
+import { getCloudinaryUrl } from '../utils/cloudinary';
 
 const WorkshopPage = () => {
     return (
@@ -33,13 +33,13 @@ const WorkshopPage = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.4, duration: 0.8 }}
-                    className="relative w-full aspect-video rounded-[3rem] overflow-hidden mb-12 shadow-2xl border-4 border-white"
+                    className="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl mb-12"
                 >
                     <img
-                        src={workshopImg}
-                        alt="Workshop vibe"
+                        src={getCloudinaryUrl('Pottery/AP-13.jpg')}
+                        alt="Workshop Atmosphere"
                         loading="lazy"
-                        className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-green-deep/10"></div>
                 </motion.div>

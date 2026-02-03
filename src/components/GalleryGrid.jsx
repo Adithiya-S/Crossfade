@@ -2,6 +2,7 @@ import React, { useMemo, useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { getCloudinaryUrl } from '../utils/cloudinary';
 
 const GalleryGrid = ({ category, title }) => {
     const navigate = useNavigate();
@@ -11,20 +12,34 @@ const GalleryGrid = ({ category, title }) => {
     // We'll import all and filter, or use specific globs if we can.
     // To keep it simple and dynamic, we'll import all and map them here.
 
-    const potteryImages = import.meta.glob('../assets/Pottery/*.{png,jpg,jpeg,webp}', { eager: true });
-    const productImages = import.meta.glob('../assets/Products/*.{png,jpg,jpeg,webp}', { eager: true });
-    const workshopImages = import.meta.glob('../assets/Workshops/*.{png,jpg,jpeg,webp}', { eager: true });
+    // We use the local file system as a "manifest" to know which files exist.
+    // We strictly take the filename and folder to construct the Cloudinary URL.
 
-    const getImages = (glob) => Object.values(glob).map((mod) => mod.default);
+    // Non-eager glob just to get keys (paths) without loading modules
+    const potteryGlob = import.meta.glob('../assets/Pottery/*.{png,jpg,jpeg,webp}');
+    const productGlob = import.meta.glob('../assets/Products/*.{png,jpg,jpeg,webp}');
+    const workshopGlob = import.meta.glob('../assets/Workshops/*.{png,jpg,jpeg,webp}');
+
+    const getCdnUrls = (glob, folderName) => {
+        return Object.keys(glob).map((path) => {
+            // path is like "../assets/Pottery/image.jpg"
+            const filename = path.split('/').pop(); // "image.jpg"
+            return getCloudinaryUrl(`${folderName}/${filename}`);
+        });
+    };
+
+    const potteryImages = useMemo(() => getCdnUrls(potteryGlob, 'Pottery'), []);
+    const productImages = useMemo(() => getCdnUrls(productGlob, 'Products'), []);
+    const workshopImages = useMemo(() => getCdnUrls(workshopGlob, 'Workshops'), []);
 
     const images = useMemo(() => {
-        if (category === 'pottery') return getImages(potteryImages);
-        if (category === 'products') return getImages(productImages);
-        if (category === 'workshops') return getImages(workshopImages);
+        if (category === 'pottery') return potteryImages;
+        if (category === 'products') return productImages;
+        if (category === 'workshops') return workshopImages;
         return [
-            ...getImages(potteryImages),
-            ...getImages(productImages),
-            ...getImages(workshopImages)
+            ...potteryImages,
+            ...productImages,
+            ...workshopImages
         ];
     }, [category]);
 

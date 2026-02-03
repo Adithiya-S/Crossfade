@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import customImg from '../assets/Pottery/AP-12.jpg';
+import { getCloudinaryUrl } from '../utils/cloudinary';
 
 const CustomOrdersPage = () => {
     return (
@@ -33,15 +33,20 @@ const CustomOrdersPage = () => {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.4, duration: 0.8 }}
-                    className="relative w-full aspect-video rounded-[3rem] overflow-hidden mb-12 shadow-2xl border-4 border-white"
+                    className="relative w-full mb-12" // Adjusted outer div to accommodate new inner div
                 >
-                    <img
-                        src={customImg}
-                        alt="Custom order vibe"
-                        loading="lazy"
-                        className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-green-deep/10"></div>
+                    <motion.div
+                        variants={itemVariants}
+                        className="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white" // Added border-4 border-white from original
+                    >
+                        <img
+                            src={getCloudinaryUrl('Pottery/AP-12.jpg')}
+                            alt="Custom Order Process"
+                            loading="lazy" // Added loading="lazy" from original
+                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-green-deep/10"></div>
+                    </motion.div>
                 </motion.div>
 
                 <div className="bg-white p-10 rounded-3xl shadow-lg border border-green-light/20 text-left mx-auto max-w-2xl">

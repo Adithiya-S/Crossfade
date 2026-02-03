@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Heart, Globe, Sparkles } from 'lucide-react';
-import potteryImg from '../assets/Pottery/AP-9.jpg';
+import { getCloudinaryUrl } from '../utils/cloudinary';
 // Import some images if available, for now using placeholders or we can try to use the copied assets
 // import aboutImg from '../assets/uploaded_media_0_....png' 
 // Since filenames are dynamic, we will use placeholders or generic refs if we knew them. 
@@ -10,17 +9,17 @@ import potteryImg from '../assets/Pottery/AP-9.jpg';
 const About = () => {
     const values = [
         {
-            icon: <Globe className="w-8 h-8 text-pink-hot" />,
+            icon: <div className="w-8 h-8 text-pink-hot">🌍</div>, // Placeholder for Globe
             title: "Nomadic Spirit",
             desc: "No fixed address. We pop up at cafes, studios, and your backyard."
         },
         {
-            icon: <Heart className="w-8 h-8 text-pink-hot" />,
+            icon: <div className="w-8 h-8 text-pink-hot">❤️</div>, // Placeholder for Heart
             title: "Warmth & Community",
             desc: "We treat everyone like friends. Encouragement over perfection."
         },
         {
-            icon: <Sparkles className="w-8 h-8 text-pink-hot" />,
+            icon: <div className="w-8 h-8 text-pink-hot">✨</div>, // Placeholder for Sparkles
             title: "Imperfect Beauty",
             desc: "Wobbly edges welcome. We celebrate the unique quirks of handmade."
         }
@@ -82,8 +81,12 @@ const About = () => {
                         className="relative"
                     >
                         <div className="aspect-[4/5] bg-green-light/20 rounded-full overflow-hidden border-4 border-white shadow-2xl relative">
-                            {/* This would be an image tag */}
-                            <img src={potteryImg} alt="Crossfade Pottery" loading="lazy" className="w-full h-full object-cover" />
+                            <img
+                                src={getCloudinaryUrl('Pottery/AP-9.jpg')}
+                                alt="Crossfade Pottery"
+                                loading="lazy"
+                                className="w-full h-full object-cover"
+                            />
                             {/* Decorative Elements */}
                             <div className="absolute top-10 right-10 w-20 h-20 bg-pink-hot/20 rounded-full blur-xl animate-pulse"></div>
                         </div>
