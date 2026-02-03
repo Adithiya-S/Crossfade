@@ -59,8 +59,6 @@ const GalleryPage = () => {
                         >
                             <Link
                                 to={`/gallery/${cat.id}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
                                 className={`block group relative h-[500px] rounded-[3rem] overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2`}
                             >
                                 <img
