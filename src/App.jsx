@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import FloatingContact from './components/FloatingContact';
 import Home from './pages/Home';
 import GalleryPage from './pages/GalleryPage';
 import CustomOrdersPage from './pages/CustomOrdersPage';
@@ -23,6 +24,7 @@ function App() {
       <ScrollToTop />
       <div className="min-h-screen bg-background overflow-x-hidden selection:bg-pink-pale selection:text-green-deep">
         <Navbar />
+        <FloatingContact />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/gallery" element={<GalleryPage />} />
