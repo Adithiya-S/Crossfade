@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import customImg from '../assets/pottery/AP-12.jpg';
+import customImg from '../assets/Pottery/AP-12.jpg';
 
 const CustomOrdersPage = () => {
     return (

@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Palette, Users } from 'lucide-react';
-import customImg from '../assets/pottery/AP-12.jpg';
-import workshopImg from '../assets/pottery/AP-13.jpg';
+import customImg from '../assets/Pottery/AP-12.jpg';
+import workshopImg from '../assets/Pottery/AP-13.jpg';
 
 const Offerings = () => {
     return (

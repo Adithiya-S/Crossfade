@@ -4,9 +4,9 @@ import { motion } from 'framer-motion';
 const GalleryPage = () => {
     // Dynamically import images from assets folders using Vite's glob import
     // Excluding HEIC files as they aren't supported in browsers by default
-    const potteryImages = import.meta.glob('../assets/pottery/*.{png,jpg,jpeg,webp}', { eager: true });
-    const productImages = import.meta.glob('../assets/products/*.{png,jpg,jpeg,webp}', { eager: true });
-    const workshopImages = import.meta.glob('../assets/workshops/*.{png,jpg,jpeg,webp}', { eager: true });
+    const potteryImages = import.meta.glob('../assets/Pottery/*.{png,jpg,jpeg,webp}', { eager: true });
+    const productImages = import.meta.glob('../assets/Products/*.{png,jpg,jpeg,webp}', { eager: true });
+    const workshopImages = import.meta.glob('../assets/Workshops/*.{png,jpg,jpeg,webp}', { eager: true });
 
     // Helper to extract values
     const getImages = (glob) => Object.values(glob).map((mod) => mod.default);

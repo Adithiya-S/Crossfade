@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Globe, Sparkles } from 'lucide-react';
-import potteryImg from '../assets/pottery/AP-9.jpg';
+import potteryImg from '../assets/Pottery/AP-9.jpg';
 // Import some images if available, for now using placeholders or we can try to use the copied assets
 // import aboutImg from '../assets/uploaded_media_0_....png' 
 // Since filenames are dynamic, we will use placeholders or generic refs if we knew them. 

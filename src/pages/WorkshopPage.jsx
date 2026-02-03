@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import workshopImg from '../assets/pottery/AP-13.jpg';
+import workshopImg from '../assets/Pottery/AP-13.jpg';
 
 const WorkshopPage = () => {
     return (
