@@ -35,7 +35,7 @@ const Hero = () => {
                         Est. 2024
                     </span>
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-green-deep leading-[1.1] mb-6">
-                        <span className="block">Creativity</span>
+                        <span className="block font-disco tracking-wide">Creativity</span>
                         <span className="block italic font-light text-pink-hot">Without Pressure</span>
                     </h1>
                 </motion.div>

@@ -22,6 +22,7 @@ export default {
       fontFamily: {
         serif: ['"Fraunces"', '"Playfair Display"', 'serif'],
         sans: ['"Outfit"', '"Inter"', 'sans-serif'],
+        disco: ['"Midcent Disco"', 'cursive'],
       },
       backgroundImage: {
         'aura': 'radial-gradient(circle at center, var(--tw-gradient-stops))',

@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="absolute top-0 left-0 w-full h-20 bg-gradient-to-b from-black/5 to-transparent pointer-events-none"></div>
 
             <div className="max-w-7xl mx-auto text-center">
-                <h2 className="text-4xl md:text-6xl font-serif mb-8 text-pink-pale">
+                <h2 className="text-4xl md:text-6xl font-disco mb-8 text-pink-pale tracking-wide">
                     Let's make this happen.
                 </h2>
                 <p className="text-lg md:text-xl font-sans text-green-light/90 mb-10 max-w-2xl mx-auto font-medium">

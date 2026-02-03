@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Heart, Globe, Sparkles } from 'lucide-react';
+import potteryImg from '../assets/pottery/AP-9.jpg';
 // Import some images if available, for now using placeholders or we can try to use the copied assets
 // import aboutImg from '../assets/uploaded_media_0_....png' 
 // Since filenames are dynamic, we will use placeholders or generic refs if we knew them. 
@@ -82,9 +83,7 @@ const About = () => {
                     >
                         <div className="aspect-[4/5] bg-green-light/20 rounded-full overflow-hidden border-4 border-white shadow-2xl relative">
                             {/* This would be an image tag */}
-                            <div className="absolute inset-0 flex items-center justify-center text-green-deep/20 font-serif text-4xl transform -rotate-12">
-                                Image Placeholder
-                            </div>
+                            <img src={potteryImg} alt="Crossfade Pottery" loading="lazy" className="w-full h-full object-cover" />
                             {/* Decorative Elements */}
                             <div className="absolute top-10 right-10 w-20 h-20 bg-pink-hot/20 rounded-full blur-xl animate-pulse"></div>
                         </div>
