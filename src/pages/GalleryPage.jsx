@@ -1,107 +1,40 @@
-import React, { useMemo, useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import potteryImg from '../assets/Pottery/AP-10.jpg'; // Example asset
+import productImg from '../assets/Products/AP-166.jpg'; // Example asset
+import workshopImg from '../assets/Workshops/IMG_6871.PNG'; // Example asset
+
+const categories = [
+    {
+        id: 'pottery',
+        title: 'Pottery',
+        image: potteryImg,
+        desc: 'Hand-thrown masterpeices.',
+        color: 'bg-green-deep',
+        textColor: 'text-white'
+    },
+    {
+        id: 'products',
+        title: 'Products',
+        image: productImg,
+        desc: 'Curated goods for your home.',
+        color: 'bg-pink-pale',
+        textColor: 'text-green-deep'
+    },
+    {
+        id: 'workshops',
+        title: 'Workshops',
+        image: workshopImg,
+        desc: 'Moments of creation.',
+        color: 'bg-green-light',
+        textColor: 'text-green-deep'
+    }
+];
 
 const GalleryPage = () => {
-    // Dynamically import images from assets folders using Vite's glob import
-    // Excluding HEIC files as they aren't supported in browsers by default
-    const potteryImages = import.meta.glob('../assets/Pottery/*.{png,jpg,jpeg,webp}', { eager: true });
-    const productImages = import.meta.glob('../assets/Products/*.{png,jpg,jpeg,webp}', { eager: true });
-    const workshopImages = import.meta.glob('../assets/Workshops/*.{png,jpg,jpeg,webp}', { eager: true });
-
-    // Helper to extract values
-    const getImages = (glob) => Object.values(glob).map((mod) => mod.default);
-
-    const allImages = useMemo(() => [
-        ...getImages(potteryImages),
-        ...getImages(productImages),
-        ...getImages(workshopImages)
-    ], []);
-
-    // Shuffle images slightly or just use them as is. 
-    // For a moodboard feel, we might want to mix them, but strictly ordering by folder is fine too.
-
-    // State for lightbox
-    const [selectedImageIndex, setSelectedImageIndex] = useState(null);
-
-    const openLightbox = (index) => setSelectedImageIndex(index);
-    const closeLightbox = () => setSelectedImageIndex(null);
-
-    const nextImage = useCallback((e) => {
-        e?.stopPropagation();
-        setSelectedImageIndex((prev) => (prev + 1) % allImages.length);
-    }, [allImages.length]);
-
-    const prevImage = useCallback((e) => {
-        e?.stopPropagation();
-        setSelectedImageIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
-    }, [allImages.length]);
-
-    // Keyboard navigation
-    useEffect(() => {
-        const handleKeyDown = (e) => {
-            if (selectedImageIndex === null) return;
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowRight') nextImage();
-            if (e.key === 'ArrowLeft') prevImage();
-        };
-
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [selectedImageIndex, nextImage, prevImage]);
-
     return (
         <div className="pt-32 pb-24 px-6 bg-background min-h-screen">
-            {/* Lightbox Modal */}
-            <AnimatePresence>
-                {selectedImageIndex !== null && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 backdrop-blur-sm"
-                        onClick={closeLightbox}
-                    >
-                        <button
-                            onClick={closeLightbox}
-                            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50 p-2"
-                        >
-                            <X size={32} />
-                        </button>
-
-                        <button
-                            onClick={prevImage}
-                            className="absolute left-4 md:left-8 text-white/70 hover:text-white transition-colors z-50 p-2 bg-black/20 hover:bg-black/40 rounded-full backdrop-blur-md"
-                        >
-                            <ChevronLeft size={40} />
-                        </button>
-
-                        <motion.img
-                            key={selectedImageIndex}
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.9 }}
-                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                            src={allImages[selectedImageIndex]}
-                            alt="Full screen view"
-                            className="max-h-[85vh] max-w-[90vw] object-contain rounded-lg shadow-2xl"
-                            onClick={(e) => e.stopPropagation()} // Prevent close on image click
-                        />
-
-                        <button
-                            onClick={nextImage}
-                            className="absolute right-4 md:right-8 text-white/70 hover:text-white transition-colors z-50 p-2 bg-black/20 hover:bg-black/40 rounded-full backdrop-blur-md"
-                        >
-                            <ChevronRight size={40} />
-                        </button>
-
-                        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/50 font-mono text-sm">
-                            {selectedImageIndex + 1} / {allImages.length}
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
             <div className="max-w-7xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -109,40 +42,48 @@ const GalleryPage = () => {
                     transition={{ duration: 0.8 }}
                     className="text-center mb-16"
                 >
-                    <span className="font-disco text-pink-hot tracking-widest text-xl mb-4 block">Visual Diary</span>
+                    <span className="font-disco text-pink-hot tracking-widest text-xl mb-4 block">Collections</span>
                     <h1 className="text-5xl md:text-7xl font-serif text-green-deep">
                         The <span className="text-pink-soft">Gallery</span>
                     </h1>
                 </motion.div>
 
-                <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-                    {allImages.map((src, i) => (
+                <div className="grid md:grid-cols-3 gap-8">
+                    {categories.map((cat, index) => (
                         <motion.div
-                            key={i}
-                            initial={{ opacity: 0, y: 50 }}
+                            key={cat.id}
+                            initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, amount: 0.1 }}
-                            transition={{ delay: (i % 3) * 0.1 }}
-                            whileHover={{ scale: 1.02 }}
-                            onClick={() => openLightbox(i)}
-                            className="rounded-2xl overflow-hidden break-inside-avoid shadow-md hover:shadow-xl transition-all duration-300 relative group bg-green-light/20 cursor-zoom-in"
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.2 }}
                         >
-                            <img
-                                src={src}
-                                alt={`Gallery Item ${i}`}
-                                loading="lazy"
-                                className="w-full h-auto object-cover"
-                            />
-                            <div className="absolute inset-0 bg-green-deep/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            <Link
+                                to={`/gallery/${cat.id}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`block group relative h-[500px] rounded-[3rem] overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2`}
+                            >
+                                <img
+                                    src={cat.image}
+                                    alt={cat.title}
+                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                />
+                                <div className={`absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-300`}></div>
+
+                                <div className="absolute bottom-0 left-0 w-full p-8 bg-gradient-to-t from-black/80 to-transparent">
+                                    <h3 className="text-4xl font-serif text-white mb-2">{cat.title}</h3>
+                                    <p className="text-white/80 font-sans text-lg transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                                        {cat.desc}
+                                    </p>
+                                </div>
+
+                                <div className="absolute top-8 right-8 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                </div>
+                            </Link>
                         </motion.div>
                     ))}
                 </div>
-
-                {allImages.length === 0 && (
-                    <div className="text-center text-green-mid py-20 font-serif text-xl">
-                        No images found. Please check asset folders (Pottery, Products, Workshops) and ensure they are jpg/png.
-                    </div>
-                )}
             </div>
         </div>
     );

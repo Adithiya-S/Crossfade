@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import FloatingContact from './components/FloatingContact';
 import Home from './pages/Home';
 import GalleryPage from './pages/GalleryPage';
+import GalleryGrid from './components/GalleryGrid';
 import CustomOrdersPage from './pages/CustomOrdersPage';
 import WorkshopPage from './pages/WorkshopPage';
 import BlogPage from './pages/BlogPage';
@@ -28,6 +29,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/gallery/pottery" element={<GalleryGrid category="pottery" />} />
+          <Route path="/gallery/products" element={<GalleryGrid category="products" />} />
+          <Route path="/gallery/workshops" element={<GalleryGrid category="workshops" />} />
           <Route path="/workshops" element={<WorkshopPage />} />
           <Route path="/custom-orders" element={<CustomOrdersPage />} />
           <Route path="/blog" element={<BlogPage />} />
