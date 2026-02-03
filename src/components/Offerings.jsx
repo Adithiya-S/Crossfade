@@ -12,7 +12,7 @@ const Offerings = () => {
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: false }}
+                        viewport={{ once: true }}
                         className="text-5xl md:text-6xl font-serif text-green-deep mb-4"
                     >
                         What We Do

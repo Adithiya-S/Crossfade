@@ -30,7 +30,7 @@ const Gallery = () => {
                             key={i}
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: false, amount: 0.2 }}
+                            viewport={{ once: true, amount: 0.2 }}
                             transition={{ delay: i * 0.1 }}
                             className={`rounded-2xl overflow-hidden break-inside-avoid shadow-md hover:shadow-xl transition-all duration-500 hover:scale-[1.02] relative group`}
                         >

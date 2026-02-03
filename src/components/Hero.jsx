@@ -28,7 +28,7 @@ const Hero = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                 >
                     <span className="inline-block py-1 px-3 border border-green-deep/30 rounded-full text-sm font-sans tracking-widest text-green-mid mb-6 uppercase">

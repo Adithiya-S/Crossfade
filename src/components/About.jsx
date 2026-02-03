@@ -34,7 +34,7 @@ const About = () => {
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: false }}
+                        viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
                         <h2 className="text-5xl md:text-6xl font-serif text-green-deep mb-8">
