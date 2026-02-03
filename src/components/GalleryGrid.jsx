@@ -10,7 +10,7 @@ const GalleryGrid = ({ category, title }) => {
     // Note: Vite's import.meta.glob must be static string literals usually.
     // We'll import all and filter, or use specific globs if we can.
     // To keep it simple and dynamic, we'll import all and map them here.
-    
+
     const potteryImages = import.meta.glob('../assets/Pottery/*.{png,jpg,jpeg,webp}', { eager: true });
     const productImages = import.meta.glob('../assets/Products/*.{png,jpg,jpeg,webp}', { eager: true });
     const workshopImages = import.meta.glob('../assets/Workshops/*.{png,jpg,jpeg,webp}', { eager: true });
@@ -59,8 +59,8 @@ const GalleryGrid = ({ category, title }) => {
 
     return (
         <div className="pt-32 pb-24 px-6 bg-background min-h-screen">
-             {/* Lightbox Modal */}
-             <AnimatePresence>
+            {/* Lightbox Modal */}
+            <AnimatePresence>
                 {selectedImageIndex !== null && (
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -92,7 +92,7 @@ const GalleryGrid = ({ category, title }) => {
                             src={images[selectedImageIndex]}
                             alt="Full screen view"
                             className="max-h-[85vh] max-w-[90vw] object-contain rounded-lg shadow-2xl"
-                            onClick={(e) => e.stopPropagation()} 
+                            onClick={(e) => e.stopPropagation()}
                         />
 
                         <button
@@ -108,10 +108,10 @@ const GalleryGrid = ({ category, title }) => {
                     </motion.div>
                 )}
             </AnimatePresence>
-            
+
             <div className="max-w-7xl mx-auto">
                 <div className="mb-8">
-                    <button 
+                    <button
                         onClick={() => navigate('/gallery')}
                         className="flex items-center gap-2 text-green-mid hover:text-green-deep transition-colors mb-4 font-serif"
                     >

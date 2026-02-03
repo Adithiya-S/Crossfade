@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import img1 from '../assets/Products/AP-166.jpg';
 import img2 from '../assets/Products/AP-180.jpg';
-import img3 from '../assets/Workshops/IMG_6871.PNG';
+import img3 from '../assets/Workshops/IMG_6872.jpg';
 import img4 from '../assets/Products/AP-192.jpg';
 
 // Assuming we can re-use some assets or use a placeholder if needed, 

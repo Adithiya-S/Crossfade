@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import potteryImg from '../assets/Pottery/AP-10.jpg'; // Example asset
 import productImg from '../assets/Products/AP-166.jpg'; // Example asset
-import workshopImg from '../assets/Workshops/IMG_6871.PNG'; // Example asset
+import workshopImg from '../assets/Workshops/IMG_6872.jpg'; // Example asset
 
 const categories = [
     {
