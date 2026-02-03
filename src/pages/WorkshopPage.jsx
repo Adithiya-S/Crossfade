@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { getCloudinaryUrl } from '../utils/cloudinary';
+import workshopImg from '../assets/Pottery/AP-13.jpg';
 
 const WorkshopPage = () => {
     return (
@@ -36,7 +36,7 @@ const WorkshopPage = () => {
                     className="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl mb-12"
                 >
                     <img
-                        src={getCloudinaryUrl('Pottery/AP-13.jpg')}
+                        src={workshopImg}
                         alt="Workshop Atmosphere"
                         loading="lazy"
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"

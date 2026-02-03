@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { getCloudinaryUrl } from '../utils/cloudinary';
+import potteryImg from '../assets/Pottery/AP-9.jpg';
 // Import some images if available, for now using placeholders or we can try to use the copied assets
 // import aboutImg from '../assets/uploaded_media_0_....png' 
 // Since filenames are dynamic, we will use placeholders or generic refs if we knew them. 
@@ -82,7 +82,7 @@ const About = () => {
                     >
                         <div className="aspect-[4/5] bg-green-light/20 rounded-full overflow-hidden border-4 border-white shadow-2xl relative">
                             <img
-                                src={getCloudinaryUrl('Pottery/AP-9.jpg')}
+                                src={potteryImg}
                                 alt="Crossfade Pottery"
                                 loading="lazy"
                                 className="w-full h-full object-cover"

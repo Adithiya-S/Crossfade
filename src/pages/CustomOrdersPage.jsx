@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { getCloudinaryUrl } from '../utils/cloudinary';
+import customImg from '../assets/Pottery/AP-12.jpg';
 
 const CustomOrdersPage = () => {
     return (
@@ -40,7 +40,7 @@ const CustomOrdersPage = () => {
                         className="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white" // Added border-4 border-white from original
                     >
                         <img
-                            src={getCloudinaryUrl('Pottery/AP-12.jpg')}
+                            src={customImg}
                             alt="Custom Order Process"
                             loading="lazy" // Added loading="lazy" from original
                             className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"

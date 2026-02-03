@@ -2,7 +2,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { getCloudinaryUrl } from '../utils/cloudinary';
+import customImg from '../assets/Pottery/AP-12.jpg';
+import workshopImg from '../assets/Pottery/AP-13.jpg';
 import { Palette, Users } from 'lucide-react'; // Re-adding these as they are used in the new structure
 
 const Offerings = () => {
@@ -33,7 +34,7 @@ const Offerings = () => {
                         {/* Background Image */}
                         <div className="relative h-[400px] rounded-[2rem] overflow-hidden group">
                             <img
-                                src={getCloudinaryUrl('Pottery/AP-12.jpg')}
+                                src={customImg}
                                 alt="Custom Orders"
                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                             />
@@ -77,7 +78,7 @@ const Offerings = () => {
                         {/* Background Image */}
                         <div className="relative h-[400px] rounded-[2rem] overflow-hidden group">
                             <img
-                                src={getCloudinaryUrl('Pottery/AP-13.jpg')}
+                                src={workshopImg}
                                 alt="Workshops"
                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                             />
