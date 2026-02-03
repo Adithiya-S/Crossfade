@@ -40,7 +40,7 @@ const Navbar = () => {
             <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
                 {/* Logo */}
                 <Link to="/" className="flex-shrink-0">
-                    <img src={logo} alt="Crossfade Art House" className="h-12 md:h-16 object-contain" />
+                    <img src={logo} alt="Crossfade" className="w-32 md:w-52 transition-all duration-300" />
                 </Link>
 
                 {/* Desktop Links */}
