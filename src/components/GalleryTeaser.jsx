@@ -2,6 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import img1 from '../assets/Pottery/AP-10.jpg';
+import img2 from '../assets/Products/AP-166.jpg';
+import img3 from '../assets/Workshops/IMG_6871.PNG';
+import img4 from '../assets/Pottery/AP-11.jpg';
 
 // Assuming we can re-use some assets or use a placeholder if needed, 
 // but styling it as a text-heavy or mix section.
@@ -65,29 +69,37 @@ const GalleryTeaser = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 }}
-                        className="bg-green-light/20 aspect-square rounded-[2rem]"
-                    ></motion.div>
+                        className="aspect-square rounded-[2rem] overflow-hidden"
+                    >
+                        <img src={img1} alt="Pottery Masterpiece" loading="lazy" className="w-full h-full object-cover" />
+                    </motion.div>
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.3 }}
-                        className="bg-pink-hot/20 aspect-video rounded-[2rem] mt-12"
-                    ></motion.div>
+                        className="aspect-video rounded-[2rem] mt-12 overflow-hidden"
+                    >
+                        <img src={img3} alt="Workshop Vibes" loading="lazy" className="w-full h-full object-cover" />
+                    </motion.div>
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.4 }}
-                        className="bg-white/10 aspect-[3/4] rounded-[2rem] -mt-12"
-                    ></motion.div>
+                        className="aspect-[3/4] rounded-[2rem] -mt-12 overflow-hidden"
+                    >
+                        <img src={img2} alt="Product Shot" loading="lazy" className="w-full h-full object-cover" />
+                    </motion.div>
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.5 }}
-                        className="bg-pink-pale/20 aspect-square rounded-[2rem]"
-                    ></motion.div>
+                        className="aspect-square rounded-[2rem] overflow-hidden"
+                    >
+                        <img src={img4} alt="Detailed Pottery" loading="lazy" className="w-full h-full object-cover" />
+                    </motion.div>
                 </div>
             </div>
         </section>
