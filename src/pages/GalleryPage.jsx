@@ -1,5 +1,6 @@
-import React, { useMemo } from 'react';
-import { motion } from 'framer-motion';
+import React, { useMemo, useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const GalleryPage = () => {
     // Dynamically import images from assets folders using Vite's glob import
@@ -20,8 +21,87 @@ const GalleryPage = () => {
     // Shuffle images slightly or just use them as is. 
     // For a moodboard feel, we might want to mix them, but strictly ordering by folder is fine too.
 
+    // State for lightbox
+    const [selectedImageIndex, setSelectedImageIndex] = useState(null);
+
+    const openLightbox = (index) => setSelectedImageIndex(index);
+    const closeLightbox = () => setSelectedImageIndex(null);
+
+    const nextImage = useCallback((e) => {
+        e?.stopPropagation();
+        setSelectedImageIndex((prev) => (prev + 1) % allImages.length);
+    }, [allImages.length]);
+
+    const prevImage = useCallback((e) => {
+        e?.stopPropagation();
+        setSelectedImageIndex((prev) => (prev - 1 + allImages.length) % allImages.length);
+    }, [allImages.length]);
+
+    // Keyboard navigation
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (selectedImageIndex === null) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [selectedImageIndex, nextImage, prevImage]);
+
     return (
         <div className="pt-32 pb-24 px-6 bg-background min-h-screen">
+            {/* Lightbox Modal */}
+            <AnimatePresence>
+                {selectedImageIndex !== null && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 backdrop-blur-sm"
+                        onClick={closeLightbox}
+                    >
+                        <button
+                            onClick={closeLightbox}
+                            className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors z-50 p-2"
+                        >
+                            <X size={32} />
+                        </button>
+
+                        <button
+                            onClick={prevImage}
+                            className="absolute left-4 md:left-8 text-white/70 hover:text-white transition-colors z-50 p-2 bg-black/20 hover:bg-black/40 rounded-full backdrop-blur-md"
+                        >
+                            <ChevronLeft size={40} />
+                        </button>
+
+                        <motion.img
+                            key={selectedImageIndex}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                            src={allImages[selectedImageIndex]}
+                            alt="Full screen view"
+                            className="max-h-[85vh] max-w-[90vw] object-contain rounded-lg shadow-2xl"
+                            onClick={(e) => e.stopPropagation()} // Prevent close on image click
+                        />
+
+                        <button
+                            onClick={nextImage}
+                            className="absolute right-4 md:right-8 text-white/70 hover:text-white transition-colors z-50 p-2 bg-black/20 hover:bg-black/40 rounded-full backdrop-blur-md"
+                        >
+                            <ChevronRight size={40} />
+                        </button>
+
+                        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/50 font-mono text-sm">
+                            {selectedImageIndex + 1} / {allImages.length}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             <div className="max-w-7xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -41,9 +121,11 @@ const GalleryPage = () => {
                             key={i}
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: false, amount: 0.1 }}
+                            viewport={{ once: true, amount: 0.1 }}
                             transition={{ delay: (i % 3) * 0.1 }}
-                            className="rounded-2xl overflow-hidden break-inside-avoid shadow-md hover:shadow-xl transition-all duration-500 hover:scale-[1.02] relative group bg-green-light/20"
+                            whileHover={{ scale: 1.02 }}
+                            onClick={() => openLightbox(i)}
+                            className="rounded-2xl overflow-hidden break-inside-avoid shadow-md hover:shadow-xl transition-all duration-300 relative group bg-green-light/20 cursor-zoom-in"
                         >
                             <img
                                 src={src}

@@ -25,7 +25,7 @@ const Offerings = () => {
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: false }}
+                        viewport={{ once: true }}
                         id="custom-orders"
                         className="group bg-background p-10 rounded-[3rem] shadow-xl hover:shadow-2xl transition-all duration-300 border border-green-light/20 hover:border-pink-hot/50 relative overflow-hidden"
                     >
@@ -63,7 +63,7 @@ const Offerings = () => {
                     <motion.div
                         initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: false }}
+                        viewport={{ once: true }}
                         id="workshops"
                         className="group bg-green-deep text-background p-10 rounded-[3rem] shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden"
                     >

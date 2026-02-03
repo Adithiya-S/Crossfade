@@ -43,7 +43,7 @@ const Hero = () => {
                 <motion.p
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{ delay: 0.4, duration: 0.8 }}
                     className="text-lg md:text-xl font-sans text-green-mid max-w-2xl mx-auto mb-10 leading-relaxed"
                 >
@@ -53,7 +53,7 @@ const Hero = () => {
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{ delay: 0.6, duration: 0.5 }}
                     className="flex flex-col sm:flex-row gap-4 justify-center"
                 >

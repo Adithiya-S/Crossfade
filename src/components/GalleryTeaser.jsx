@@ -2,10 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import img1 from '../assets/Pottery/AP-10.jpg';
-import img2 from '../assets/Products/AP-166.jpg';
+import img1 from '../assets/Products/AP-166.jpg';
+import img2 from '../assets/Products/AP-180.jpg';
 import img3 from '../assets/Workshops/IMG_6871.PNG';
-import img4 from '../assets/Pottery/AP-11.jpg';
+import img4 from '../assets/Products/AP-192.jpg';
 
 // Assuming we can re-use some assets or use a placeholder if needed, 
 // but styling it as a text-heavy or mix section.

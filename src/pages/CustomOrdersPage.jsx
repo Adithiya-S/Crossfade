@@ -8,23 +8,41 @@ const CustomOrdersPage = () => {
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
                 className="max-w-4xl w-full text-center"
             >
-                <span className="font-disco text-pink-hot tracking-widest text-xl mb-4 block">Made For You</span>
-                <h1 className="text-5xl md:text-7xl font-serif text-green-deep mb-8 relative inline-block">
+                <motion.span
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="font-disco text-pink-hot tracking-widest text-xl mb-4 block"
+                >
+                    Made For You
+                </motion.span>
+                <motion.h1
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.3, type: "spring" }}
+                    className="text-5xl md:text-7xl font-serif text-green-deep mb-8 relative inline-block"
+                >
                     Custom Orders
                     <span className="absolute -bottom-2 left-0 w-full h-1 bg-pink-hot/30 rounded-full"></span>
-                </h1>
+                </motion.h1>
 
-                <div className="relative w-full aspect-video rounded-[3rem] overflow-hidden mb-12 shadow-2xl border-4 border-white">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.4, duration: 0.8 }}
+                    className="relative w-full aspect-video rounded-[3rem] overflow-hidden mb-12 shadow-2xl border-4 border-white"
+                >
                     <img
                         src={customImg}
                         alt="Custom order vibe"
                         loading="lazy"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-green-deep/10"></div>
-                </div>
+                </motion.div>
 
                 <div className="bg-white p-10 rounded-3xl shadow-lg border border-green-light/20 text-left mx-auto max-w-2xl">
                     <h3 className="text-3xl font-serif text-green-deep mb-6">Commission a Piece</h3>
@@ -34,21 +52,39 @@ const CustomOrdersPage = () => {
                     <div className="space-y-6 mb-8 text-green-deep font-medium">
                         <p>What we need from you:</p>
                         <ul className="space-y-2 list-disc list-inside opacity-80 pl-2">
-                            <li>Reference images or style preference</li>
-                            <li>Quantity and timeline</li>
-                            <li>Budget range</li>
+                            {[
+                                "Reference images or style preference",
+                                "Quantity and timeline",
+                                "Budget range"
+                            ].map((item, index) => (
+                                <motion.li
+                                    key={index}
+                                    initial={{ opacity: 0, x: -10 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: 0.5 + (index * 0.1) }}
+                                >
+                                    {item}
+                                </motion.li>
+                            ))}
                         </ul>
                     </div>
-                    <div className="text-center">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.8 }}
+                        className="text-center"
+                    >
                         <a
                             href="https://wa.me/918825836031"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-block bg-green-deep text-background px-8 py-3 rounded-full font-serif text-lg hover:bg-pink-hot transition-all duration-300 shadow-md hover:shadow-lg"
+                            className="inline-block bg-green-deep text-background px-8 py-3 rounded-full font-serif text-lg hover:bg-pink-hot transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1"
                         >
                             Start a Commission
                         </a>
-                    </div>
+                    </motion.div>
                 </div>
             </motion.div>
         </div>
