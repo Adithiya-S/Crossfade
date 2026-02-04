@@ -2,10 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import img1 from '../assets/Products/AP-166.jpg';
-import img2 from '../assets/Products/AP-180.jpg';
-import img3 from '../assets/Workshops/IMG_6872.jpg';
-import img4 from '../assets/Products/AP-192.jpg';
+import img1 from '../assets/Products/AP-166.webp';
+import img2 from '../assets/Products/AP-180.webp';
+import img3 from '../assets/Workshops/IMG_6872.webp';
+import img4 from '../assets/Products/AP-192.webp';
 
 // Assuming we can re-use some assets or use a placeholder if needed, 
 // but styling it as a text-heavy or mix section.
@@ -63,43 +63,49 @@ const GalleryTeaser = () => {
                 </div>
 
                 {/* Visual side - abstract representation of gallery items */}
-                <div className="md:w-1/2 grid grid-cols-2 gap-4 opacity-80 mix-blend-overlay">
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="aspect-square rounded-[2rem] overflow-hidden"
-                    >
-                        <img src={img1} alt="Pottery Masterpiece" loading="lazy" className="w-full h-full object-cover" />
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
-                        className="aspect-video rounded-[2rem] mt-12 overflow-hidden"
-                    >
-                        <img src={img3} alt="Workshop Vibes" loading="lazy" className="w-full h-full object-cover" />
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.4 }}
-                        className="aspect-[3/4] rounded-[2rem] -mt-12 overflow-hidden"
-                    >
-                        <img src={img2} alt="Product Shot" loading="lazy" className="w-full h-full object-cover" />
-                    </motion.div>
-                    <motion.div
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.5 }}
-                        className="aspect-square rounded-[2rem] overflow-hidden"
-                    >
-                        <img src={img4} alt="Detailed Pottery" loading="lazy" className="w-full h-full object-cover" />
-                    </motion.div>
+                {/* Visual side - Masonry Layout */}
+                <div className="md:w-1/2 flex gap-6 opacity-90">
+                    <div className="w-1/2 flex flex-col gap-6">
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
+                            className="aspect-[4/5] rounded-[2rem] overflow-hidden"
+                        >
+                            <img src={img1} alt="Pottery Masterpiece" loading="lazy" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.4 }}
+                            className="aspect-square rounded-[2rem] overflow-hidden"
+                        >
+                            <img src={img2} alt="Product Shot" loading="lazy" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                        </motion.div>
+                    </div>
+
+                    <div className="w-1/2 flex flex-col gap-6 pt-12 md:pt-24">
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 }}
+                            className="aspect-square rounded-[2rem] overflow-hidden"
+                        >
+                            <img src={img3} alt="Workshop Vibes" loading="lazy" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.5 }}
+                            className="aspect-[4/5] rounded-[2rem] overflow-hidden"
+                        >
+                            <img src={img4} alt="Detailed Pottery" loading="lazy" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                        </motion.div>
+                    </div>
                 </div>
             </div>
         </section>

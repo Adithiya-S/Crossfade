@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import potteryImg from '../assets/Pottery/AP-10.jpg';
-import productImg from '../assets/Products/AP-166.jpg';
-import workshopImg from '../assets/Workshops/IMG_6872.jpg';
+import potteryImg from '../assets/Pottery/AP-10.webp';
+import productImg from '../assets/Products/AP-166.webp';
+import workshopImg from '../assets/Workshops/IMG_6872.webp';
 
 const categories = [
     {

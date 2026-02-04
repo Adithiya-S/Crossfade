@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import potteryImg from '../assets/Pottery/AP-9.jpg';
+import { Compass, Heart, Sparkles } from 'lucide-react';
+import potteryImg from '../assets/Pottery/AP-9.webp';
 // Import some images if available, for now using placeholders or we can try to use the copied assets
 // import aboutImg from '../assets/uploaded_media_0_....png' 
 // Since filenames are dynamic, we will use placeholders or generic refs if we knew them. 
@@ -9,17 +10,17 @@ import potteryImg from '../assets/Pottery/AP-9.jpg';
 const About = () => {
     const values = [
         {
-            icon: <div className="w-8 h-8 text-pink-hot">🌍</div>, // Placeholder for Globe
+            icon: <Compass className="w-8 h-8 text-pink-hot" />,
             title: "Nomadic Spirit",
             desc: "No fixed address. We pop up at cafes, studios, and your backyard."
         },
         {
-            icon: <div className="w-8 h-8 text-pink-hot">❤️</div>, // Placeholder for Heart
+            icon: <Heart className="w-8 h-8 text-pink-hot" />,
             title: "Warmth & Community",
             desc: "We treat everyone like friends. Encouragement over perfection."
         },
         {
-            icon: <div className="w-8 h-8 text-pink-hot">✨</div>, // Placeholder for Sparkles
+            icon: <Sparkles className="w-8 h-8 text-pink-hot" />,
             title: "Imperfect Beauty",
             desc: "Wobbly edges welcome. We celebrate the unique quirks of handmade."
         }

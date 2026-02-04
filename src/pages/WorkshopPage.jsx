@@ -1,91 +1,178 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import workshopImg from '../assets/Pottery/AP-13.jpg';
+import { Calendar, Clock, Users, ArrowRight, Sparkles } from 'lucide-react';
+
+// Images
+import workshopHero from '../assets/Workshops/IMG_6872.webp';
+import wheelImg from '../assets/Workshops/IMG_5876.webp';
+import handImg from '../assets/Workshops/IMG_4553.webp';
+import partyImg from '../assets/Workshops/IMG_5830.webp';
+import paintImg from '../assets/Workshops/IMG_5909.webp';
+
+const workshops = [
+    {
+        id: 'wheel-intro',
+        title: "Introduction to Wheel Throwing",
+        category: "Beginner Friendly",
+        description: "Experience the magic of the wheel. Learn the basics of centering, opening, and pulling walls to create your very first cylinder or bowl.",
+        duration: "2.5 Hours",
+        groupSize: "Max 4 People",
+        price: "₹3,000 / person",
+        image: wheelImg,
+        features: ["One-on-one guidance", "All materials included", "Take home 2 fired pieces"]
+    },
+    {
+        id: 'hand-building',
+        title: "Hand-Building Basics",
+        category: "Relaxing & Sculptural",
+        description: "Slow down and sculpt with your hands. pinch, coil, and slab your way to a unique mug, vase, or planter. No machinery, just you and the clay.",
+        duration: "3 Hours",
+        groupSize: "Max 8 People",
+        price: "₹2,500 / person",
+        image: handImg,
+        features: ["Learn 3 distinct techniques", "Texture & pattern tools", "Your choice of glaze"]
+    },
+    {
+        id: 'pottery-painting',
+        title: "Paint & Glaze",
+        category: "Creative & Chill",
+        description: "Skip the messy part and get straight to decorating. Choose from our pre-fired bisque ware and paint your own designs with professional glazes.",
+        duration: "2 Hours",
+        groupSize: "Max 10 People",
+        price: "Since ₹1,200",
+        image: paintImg,
+        features: ["Wide selection of bisque", "Food-safe glazes", "Relaxing atmosphere"]
+    },
+    {
+        id: 'private-party',
+        title: "Private Parties & Events",
+        category: "Groups",
+        description: "Birthdays, team bonding, or just a fun Sunday with the girls. We bring the studio to you, or host you at our partner venues.",
+        duration: "Custom",
+        groupSize: "10+ People",
+        price: "Custom Quote",
+        image: partyImg,
+        features: ["Customized theme", "Music & vibes", "Catering add-ons available"]
+    }
+];
 
 const WorkshopPage = () => {
     return (
-        <div className="pt-32 pb-24 px-6 bg-background min-h-screen flex flex-col items-center">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="max-w-4xl w-full text-center"
-            >
-                <motion.span
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="font-disco text-pink-hot tracking-widest text-xl mb-4 block"
-                >
-                    Get Dirty
-                </motion.span>
-                <motion.h1
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3, type: "spring" }}
-                    className="text-5xl md:text-7xl font-serif text-green-deep mb-8 relative inline-block"
-                >
-                    Workshops
-                    <span className="absolute -bottom-2 left-0 w-full h-1 bg-pink-hot/30 rounded-full"></span>
-                </motion.h1>
-
+        <div className="pt-32 pb-24 bg-background min-h-screen">
+            {/* Hero Section */}
+            <div className="px-6 mb-24 text-center">
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.4, duration: 0.8 }}
-                    className="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden shadow-2xl mb-12"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
+                    className="max-w-4xl mx-auto"
                 >
-                    <img
-                        src={workshopImg}
-                        alt="Workshop Atmosphere"
-                        loading="lazy"
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-green-deep/10"></div>
-                </motion.div>
-
-                <div className="bg-white p-10 rounded-3xl shadow-lg border border-green-light/20 text-left mx-auto max-w-2xl">
-                    <h3 className="text-3xl font-serif text-green-deep mb-6">Upcoming Sessions</h3>
-                    <p className="font-sans text-green-mid text-lg mb-8 leading-relaxed">
-                        We host pop-up workshops at various cafes and studios. We also do private events for birthdays, team building, or just a chill Sunday.
+                    <span className="font-disco text-pink-hot tracking-widest text-xl mb-4 block">Workshops & Classes</span>
+                    <h1 className="text-5xl md:text-7xl font-serif text-green-deep mb-8">
+                        Get Your Hands <span className="italic text-pink-hot">Dirty.</span>
+                    </h1>
+                    <p className="text-xl text-green-mid font-sans max-w-2xl mx-auto">
+                        Whether you’re a complete beginner or looking to refine your skills, we have a space for you. Join us for a session of mud, music, and mindfulness.
                     </p>
-                    <ul className="space-y-4 mb-8 text-green-deep font-medium">
-                        {[
-                            "Hand-building basics (Pinch & Coil)",
-                            "Wheel throwing intro",
-                            "Painting & Glazing"
-                        ].map((item, index) => (
-                            <motion.li
-                                key={index}
-                                initial={{ opacity: 0, x: -20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.5 + (index * 0.1) }}
-                                className="flex items-center gap-3"
-                            >
-                                <span className="w-2 h-2 bg-pink-hot rounded-full"></span>
-                                {item}
-                            </motion.li>
-                        ))}
-                    </ul>
+                </motion.div>
+            </div>
+
+            {/* Workshop Viewer List */}
+            <div className="max-w-7xl mx-auto px-6 space-y-24">
+                {workshops.map((workshop, index) => (
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        key={workshop.id}
+                        initial={{ opacity: 0, y: 50 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.8 }}
-                        className="text-center"
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.6 }}
+                        className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 items-center`}
                     >
-                        <a
-                            href="https://wa.me/918825836031"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-block bg-pink-hot text-background px-8 py-3 rounded-full font-serif text-lg hover:bg-green-deep transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1"
-                        >
-                            Enquire for Dates
-                        </a>
+                        {/* Image Side */}
+                        <div className="w-full lg:w-1/2 relative group">
+                            <div className="absolute inset-0 bg-green-deep/5 rounded-[3rem] transform rotate-3 group-hover:rotate-6 transition-transform duration-500"></div>
+                            <div className="relative aspect-[4/3] rounded-[3rem] overflow-hidden shadow-xl">
+                                <img
+                                    src={workshop.image}
+                                    alt={workshop.title}
+                                    loading="lazy"
+                                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                                />
+                                <div className="absolute top-6 left-6 bg-white/90 backdrop-blur text-green-deep px-4 py-2 rounded-full font-serif text-sm border border-green-light">
+                                    {workshop.category}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Content Side */}
+                        <div className="w-full lg:w-1/2">
+                            <h2 className="text-4xl md:text-5xl font-serif text-green-deep mb-6">{workshop.title}</h2>
+                            <p className="text-lg text-green-mid mb-8 leading-relaxed">
+                                {workshop.description}
+                            </p>
+
+                            {/* Details Grid */}
+                            <div className="grid grid-cols-2 gap-y-6 gap-x-12 mb-10">
+                                <div className="flex items-center gap-3 text-green-deep">
+                                    <Clock size={20} className="text-pink-hot" />
+                                    <span className="font-sans font-medium">{workshop.duration}</span>
+                                </div>
+                                <div className="flex items-center gap-3 text-green-deep">
+                                    <Users size={20} className="text-pink-hot" />
+                                    <span className="font-sans font-medium">{workshop.groupSize}</span>
+                                </div>
+                                {/* <div className="flex items-center gap-3 text-green-deep">
+                                    <IndianRupee size={20} className="text-pink-hot" />
+                                    <span className="font-sans font-medium">{workshop.price}</span>
+                                </div> */}
+                            </div>
+
+                            {/* Features List */}
+                            <ul className="mb-10 space-y-3">
+                                {workshop.features.map((feature, i) => (
+                                    <li key={i} className="flex items-center gap-3 text-green-mid">
+                                        <Sparkles size={16} className="text-green-light" />
+                                        {feature}
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <a
+                                href="https://wa.me/918825836031"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group inline-flex items-center gap-3 bg-green-deep text-background px-8 py-4 rounded-full font-serif text-lg hover:bg-pink-hot transition-all duration-300 shadow-lg hover:shadow-pink-hot/30"
+                            >
+                                Book This Session
+                                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                            </a>
+                        </div>
                     </motion.div>
+                ))}
+            </div>
+
+            {/* Bottom CTA */}
+            <div className="mt-32 px-6">
+                <div className="max-w-5xl mx-auto bg-pink-pale/30 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
+                    {/* Decorative */}
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-pink-hot/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
+
+                    <h2 className="text-4xl md:text-5xl font-serif text-green-deep mb-6 relative z-10">
+                        Don't see what you're looking for?
+                    </h2>
+                    <p className="text-xl text-green-mid mb-10 max-w-2xl mx-auto relative z-10">
+                        We can customize a workshop for your specific needs. From 1-on-1 intensive courses to corporate retreats.
+                    </p>
+                    <a
+                        href="https://wa.me/918825836031?text=Hi!%20I'm%20interested%20in%20a%20custom%20workshop."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-block border-2 border-green-deep text-green-deep px-10 py-4 rounded-full font-serif text-lg hover:bg-green-deep hover:text-white transition-all duration-300 relative z-10"
+                    >
+                        Chat with Us
+                    </a>
                 </div>
-            </motion.div>
+            </div>
         </div>
     );
 };

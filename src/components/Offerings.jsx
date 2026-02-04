@@ -2,8 +2,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import customImg from '../assets/Pottery/AP-12.jpg';
-import workshopImg from '../assets/Pottery/AP-13.jpg';
+import customImg from '../assets/Pottery/AP-12.webp';
+import workshopImg from '../assets/Pottery/AP-13.webp';
 import { Palette, Users } from 'lucide-react'; // Re-adding these as they are used in the new structure
 
 const Offerings = () => {
