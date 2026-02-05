@@ -1,6 +1,6 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Calendar, Clock, Users, ArrowRight, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Calendar, Clock, Users, ArrowRight, Sparkles, X, Check } from 'lucide-react';
 
 // Images
 import workshopHero from '../assets/Workshops/IMG_6872.webp';
@@ -57,6 +57,23 @@ const workshops = [
 ];
 
 const WorkshopPage = () => {
+    const [selectedWorkshop, setSelectedWorkshop] = useState(null);
+    const [bookingState, setBookingState] = useState('idle'); // idle, submitting, success
+
+    const handleBookClick = (workshop) => {
+        setSelectedWorkshop(workshop);
+        setBookingState('idle');
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setBookingState('submitting');
+        // Simulate API call
+        setTimeout(() => {
+            setBookingState('success');
+        }, 1500);
+    };
+
     return (
         <div className="pt-32 pb-24 bg-background min-h-screen">
             {/* Hero Section */}
@@ -121,10 +138,6 @@ const WorkshopPage = () => {
                                     <Users size={20} className="text-pink-hot" />
                                     <span className="font-sans font-medium">{workshop.groupSize}</span>
                                 </div>
-                                {/* <div className="flex items-center gap-3 text-green-deep">
-                                    <IndianRupee size={20} className="text-pink-hot" />
-                                    <span className="font-sans font-medium">{workshop.price}</span>
-                                </div> */}
                             </div>
 
                             {/* Features List */}
@@ -137,15 +150,13 @@ const WorkshopPage = () => {
                                 ))}
                             </ul>
 
-                            <a
-                                href="https://wa.me/918825836031"
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <button
+                                onClick={() => handleBookClick(workshop)}
                                 className="group inline-flex items-center gap-3 bg-green-deep text-background px-8 py-4 rounded-full font-serif text-lg hover:bg-pink-hot transition-all duration-300 shadow-lg hover:shadow-pink-hot/30"
                             >
                                 Book This Session
                                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                            </a>
+                            </button>
                         </div>
                     </motion.div>
                 ))}
@@ -154,7 +165,6 @@ const WorkshopPage = () => {
             {/* Bottom CTA */}
             <div className="mt-32 px-6">
                 <div className="max-w-5xl mx-auto bg-pink-pale/30 rounded-[3rem] p-12 md:p-20 text-center relative overflow-hidden">
-                    {/* Decorative */}
                     <div className="absolute top-0 right-0 w-64 h-64 bg-pink-hot/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
 
                     <h2 className="text-4xl md:text-5xl font-serif text-green-deep mb-6 relative z-10">
@@ -173,6 +183,82 @@ const WorkshopPage = () => {
                     </a>
                 </div>
             </div>
+
+            {/* Booking Modal */}
+            <AnimatePresence>
+                {selectedWorkshop && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+                    >
+                        <motion.div
+                            initial={{ y: 50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: 50, opacity: 0 }}
+                            className="bg-white rounded-[2rem] p-8 w-full max-w-lg shadow-2xl relative"
+                        >
+                            <button
+                                onClick={() => setSelectedWorkshop(null)}
+                                className="absolute top-6 right-6 text-gray-400 hover:text-red-500 transition-colors"
+                            >
+                                <X size={24} />
+                            </button>
+
+                            {bookingState === 'success' ? (
+                                <div className="text-center py-10">
+                                    <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                                        <Check size={40} />
+                                    </div>
+                                    <h3 className="text-3xl font-serif text-green-deep mb-4">Request Sent!</h3>
+                                    <p className="text-green-mid mb-8">We've received your booking request for <strong>{selectedWorkshop.title}</strong>. We'll contact you shortly to confirm dates.</p>
+                                    <button
+                                        onClick={() => setSelectedWorkshop(null)}
+                                        className="px-8 py-3 bg-green-deep text-white rounded-full font-serif"
+                                    >
+                                        Close
+                                    </button>
+                                </div>
+                            ) : (
+                                <>
+                                    <h2 className="text-3xl font-serif text-green-deep mb-2">Book a Spot</h2>
+                                    <p className="text-green-mid mb-6">for {selectedWorkshop.title}</p>
+
+                                    <form onSubmit={handleSubmit} className="space-y-4">
+                                        <div>
+                                            <label className="block text-sm font-medium text-green-mid mb-2">Your Name</label>
+                                            <input required type="text" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-pink-hot outline-none" placeholder="Jane Doe" />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-green-mid mb-2">Email Address</label>
+                                            <input required type="email" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-pink-hot outline-none" placeholder="jane@example.com" />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-green-mid mb-2">Phone Number</label>
+                                            <input required type="tel" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-pink-hot outline-none" placeholder="+91 99999 99999" />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-green-mid mb-2">Number of Seats</label>
+                                            <select className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-pink-hot outline-none">
+                                                {[1, 2, 3, 4, 5].map(n => <option key={n} value={n}>{n}</option>)}
+                                            </select>
+                                        </div>
+
+                                        <button
+                                            type="submit"
+                                            disabled={bookingState === 'submitting'}
+                                            className="w-full mt-4 py-4 bg-green-deep text-white rounded-full font-serif text-lg hover:bg-pink-hot transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                                        >
+                                            {bookingState === 'submitting' ? 'Sending...' : 'Send Request'}
+                                        </button>
+                                    </form>
+                                </>
+                            )}
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };

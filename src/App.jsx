@@ -9,6 +9,7 @@ import GalleryGrid from './components/GalleryGrid';
 import CustomOrdersPage from './pages/CustomOrdersPage';
 import WorkshopPage from './pages/WorkshopPage';
 import BlogPage from './pages/BlogPage';
+import AdminPage from './pages/AdminPage';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -35,6 +36,7 @@ function App() {
           <Route path="/workshops" element={<WorkshopPage />} />
           <Route path="/custom-orders" element={<CustomOrdersPage />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/admin" element={<AdminPage />} />
         </Routes>
         <Footer />
       </div>
