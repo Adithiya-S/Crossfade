@@ -1,11 +1,10 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Palette, Gift, Building, ArrowRight, CheckCircle2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Palette, Gift, Building, ArrowRight, CheckCircle2, Check, X } from 'lucide-react';
 
 // Images - Using a mix of pottery and product shots to showcase variety
 import dinnerwareImg from '../assets/Pottery/AP-10.webp';
 import giftingImg from '../assets/Products/AP-166.webp';
-import decorImg from '../assets/Pottery/AP-12.webp';
 import restaurantImg from '../assets/Pottery/AP-16.webp'; // Placeholder for bulk/restaurant
 
 const services = [
@@ -42,20 +41,26 @@ const services = [
         icon: <Building className="text-pink-hot" size={24} />,
         features: ["High-durability firing", "Logo integration", "Consistent reproduction"]
     },
-    // {
-    //     id: 'decor',
-    //     title: "Statement Decor",
-    //     category: "Interior Art",
-    //     description: "Large format vases, sculptural pieces, and wall installations. Art that breathes life into your corners.",
-    //     timeline: "5-7 Weeks",
-    //     minOrder: "1 Piece",
-    //     image: decorImg,
-    //     icon: <Palette className="text-pink-hot" size={24} />,
-    //     features: ["Site-specific design", "Installation support", "Unique textures"]
-    // }
 ];
 
 const CustomOrdersPage = () => {
+    const [selectedService, setSelectedService] = useState(null);
+    const [formState, setFormState] = useState('idle'); // idle, submitting, success
+
+    const handleCommissionClick = (service) => {
+        setSelectedService(service);
+        setFormState('idle');
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setFormState('submitting');
+        // Simulate API call
+        setTimeout(() => {
+            setFormState('success');
+        }, 1500);
+    };
+
     return (
         <div className="pt-32 pb-24 bg-background min-h-screen">
             {/* Hero Section */}
@@ -138,17 +143,15 @@ const CustomOrdersPage = () => {
                                 </div>
                             </div>
 
-                            <a
-                                href={`https://wa.me/918825836031?text=Hi!%20I'm%20interested%20in%20${encodeURIComponent(service.title)}.`}
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            <button
+                                onClick={() => handleCommissionClick(service)}
                                 className="group inline-flex items-center gap-3 text-xl font-serif text-pink-hot hover:text-green-deep transition-colors"
                             >
                                 Start a Commission
                                 <span className="p-2 bg-pink-hot rounded-full text-white group-hover:bg-green-deep transition-colors">
                                     <ArrowRight size={20} />
                                 </span>
-                            </a>
+                            </button>
                         </div>
                     </motion.div>
                 ))}
@@ -190,6 +193,80 @@ const CustomOrdersPage = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Commission Modal */}
+            <AnimatePresence>
+                {selectedService && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+                    >
+                        <motion.div
+                            initial={{ y: 50, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: 50, opacity: 0 }}
+                            className="bg-white rounded-[2rem] p-8 w-full max-w-lg shadow-2xl relative"
+                        >
+                            <button
+                                onClick={() => setSelectedService(null)}
+                                className="absolute top-6 right-6 text-gray-400 hover:text-red-500 transition-colors"
+                            >
+                                <X size={24} />
+                            </button>
+
+                            {formState === 'success' ? (
+                                <div className="text-center py-10">
+                                    <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                                        <Check size={40} />
+                                    </div>
+                                    <h3 className="text-3xl font-serif text-green-deep mb-4">Inquiry Received!</h3>
+                                    <p className="text-green-mid mb-8">Thanks for your interest in <strong>{selectedService.title}</strong>. We'll review your details and get back to you with a quote/timeline.</p>
+                                    <button
+                                        onClick={() => setSelectedService(null)}
+                                        className="px-8 py-3 bg-green-deep text-white rounded-full font-serif"
+                                    >
+                                        Close
+                                    </button>
+                                </div>
+                            ) : (
+                                <>
+                                    <h2 className="text-3xl font-serif text-green-deep mb-2">Commission Inquiry</h2>
+                                    <p className="text-green-mid mb-6">for {selectedService.title}</p>
+
+                                    <form onSubmit={handleSubmit} className="space-y-4">
+                                        <div>
+                                            <label className="block text-sm font-medium text-green-mid mb-2">Your Name</label>
+                                            <input required type="text" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-pink-hot outline-none" placeholder="Jane Doe" />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-green-mid mb-2">Email Address</label>
+                                            <input required type="email" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-pink-hot outline-none" placeholder="jane@example.com" />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-green-mid mb-2">Approx Budget (₹)</label>
+                                            <input type="text" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-pink-hot outline-none" placeholder="e.g. 15,000" />
+                                        </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-green-mid mb-2">Brief Description</label>
+                                            <textarea rows="3" className="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:border-pink-hot outline-none resize-none" placeholder="What do you have in mind? Quantity, colors, timeline..."></textarea>
+                                        </div>
+
+                                        <button
+                                            type="submit"
+                                            disabled={formState === 'submitting'}
+                                            className="w-full mt-4 py-4 bg-green-deep text-white rounded-full font-serif text-lg hover:bg-pink-hot transition-colors disabled:opacity-70 disabled:cursor-not-allowed"
+                                        >
+                                            {formState === 'submitting' ? 'Sending...' : 'Submit Inquiry'}
+                                        </button>
+                                    </form>
+                                </>
+                            )}
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 };
