@@ -1,8 +1,8 @@
 <?php
 // db.php
-// Setup CORS for local React development (adjust origin for production if needed)
-header("Access-Control-Allow-Origin: http://localhost:5173");
-
+// Setup CORS for local React development and Production
+$origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : 'https://crossfadearthouse.com';
+header("Access-Control-Allow-Origin: $origin");
 header("Access-Control-Allow-Credentials: true");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Authorization");

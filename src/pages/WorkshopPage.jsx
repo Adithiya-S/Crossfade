@@ -87,7 +87,7 @@ const WorkshopPage = () => {
 
                                 <div className="w-full lg:w-1/2">
                                     <h2 className="text-4xl md:text-5xl font-serif text-green-deep mb-6">{workshop.title}</h2>
-                                    <p className="text-lg text-green-mid mb-8 leading-relaxed whitespace-pre-line">{workshop.description}</p>
+                                    <p className="text-lg text-green-mid mb-8 leading-relaxed whitespace-pre-wrap">{workshop.description}</p>
 
                                     <div className="grid grid-cols-2 gap-y-6 gap-x-12 mb-10">
                                         <div className="flex items-center gap-3 text-green-deep">

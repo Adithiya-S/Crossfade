@@ -116,7 +116,7 @@ const BlogPage = () => {
                     </div>
                 )}
 
-                <div className="prose prose-lg mx-auto text-green-deep/90 font-sans mb-20" dangerouslySetInnerHTML={{ __html: selectedBlog.content }}></div>
+                <div className="prose prose-lg mx-auto text-green-deep/90 font-sans mb-20 whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: selectedBlog.content }}></div>
 
                 {/* --- COMMENTS SECTION --- */}
                 <div className="border-t border-gray-200 pt-16">
