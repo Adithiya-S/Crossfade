@@ -7,7 +7,7 @@ const FloatingContact = () => {
         <>
             {/* Call Button - Bottom Left */}
             <motion.a
-                href="tel:+"
+                href="tel:+918825836031"
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1, duration: 0.5 }}
@@ -19,7 +19,7 @@ const FloatingContact = () => {
 
             {/* WhatsApp Button - Bottom Right */}
             <motion.a
-                href="https://wa.me/"
+                href="https://wa.me/918825836031"
                 target="_blank"
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, x: 50 }}

@@ -27,7 +27,9 @@ const Footer = () => {
                         WhatsApp Us
                     </a>
                     <a
-                        href="mailto:crossfadearthouse@gmail.com"
+                        href="https://mail.google.com/mail/?view=cm&fs=1&to=crossfadearthouse@gmail.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="flex items-center gap-3 border border-pink-pale text-pink-pale px-8 py-3 rounded-full font-serif text-lg hover:bg-pink-pale hover:text-green-deep transition-all duration-300"
                     >
                         <Mail size={24} />
