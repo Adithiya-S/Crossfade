@@ -60,7 +60,7 @@ const api = {
             // Mock Login (admin/admin123)
             if (username === 'admin' && password === 'admin123') {
                 const token = 'mock-jwt-token-123';
-                localStorage.setItem('adminToken', token);
+                sessionStorage.setItem('adminToken', token);
                 return { success: true, token };
             }
             throw new Error('Invalid credentials');
@@ -73,19 +73,19 @@ const api = {
         });
         const data = await res.json();
         if (!res.ok) throw new Error(data.error);
-        localStorage.setItem('adminToken', data.token);
+        sessionStorage.setItem('adminToken', data.token);
         return data;
     },
 
     logout: () => {
-        localStorage.removeItem('adminToken');
+        sessionStorage.removeItem('adminToken');
     },
 
-    getToken: () => localStorage.getItem('adminToken'),
+    getToken: () => sessionStorage.getItem('adminToken'),
 
     getHeaders: () => ({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+        'Authorization': `Bearer ${sessionStorage.getItem('adminToken')}`
     }),
 
     // ---- WORKSHOPS ----
@@ -262,7 +262,7 @@ const api = {
             method: 'POST',
             // Fetch handles multipart boundaries automatically when given FormData
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
+                'Authorization': `Bearer ${sessionStorage.getItem('adminToken')}`
             },
             body: formData
         });
