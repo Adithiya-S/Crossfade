@@ -5,7 +5,7 @@ require_once 'db.php';
 require_once 'auth.php';
 
 // Ensure the user is authenticated 
-$admin_id = verifyToken();
+$admin_id = checkAuth($pdo);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Check if file was uploaded without errors
