@@ -34,24 +34,22 @@ const Hero = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                 >
-                    <span className="inline-block py-1 px-3 border border-green-deep/30 rounded-full text-sm font-sans tracking-widest text-green-mid mb-6 uppercase">
-                        Est. 2024
-                    </span>
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-green-deep leading-[1.1] mb-6">
-                        <span className="block font-disco tracking-wide">Creativity</span>
-                        <span className="block italic font-light text-pink-hot">Without Pressure</span>
+                        <span className="block font-disco tracking-wide text-pink-hot italic">Create, Explore</span>
+                        <span className="block font-light">Crossfade</span>
                     </h1>
                 </motion.div>
 
-                <motion.p
+                <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.4, duration: 0.8 }}
                     className="text-lg md:text-xl font-sans text-green-mid max-w-2xl mx-auto mb-10 leading-relaxed"
                 >
-                    An artist-led pottery & art brand. We are nomadic—creating custom pieces and bringing hands-on workshops to your space.
-                </motion.p>
+                    <p className="mb-2">Where art process and experience intersect.</p>
+                    <p>A contemporary creative space for workshops, events and meaningful making.</p>
+                </motion.div>
 
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}

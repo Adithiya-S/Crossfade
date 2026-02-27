@@ -9,11 +9,12 @@ const Footer = () => {
 
             <div className="max-w-7xl mx-auto text-center">
                 <h2 className="text-4xl md:text-6xl font-disco mb-8 text-pink-pale tracking-wide">
-                    Let's make this happen.
+                    Get in Touch.
                 </h2>
-                <p className="text-lg md:text-xl font-sans text-green-light/90 mb-10 max-w-2xl mx-auto font-medium">
-                    Enquiry based pricing for workshops and custom orders. Drop us a message—we don't bite (usually).
-                </p>
+                <div className="text-lg md:text-xl font-sans text-green-light/90 mb-10 max-w-2xl mx-auto font-medium space-y-4">
+                    <p>Whether you are planning a private session, group experience, or custom commission, we would be happy to discuss what you have in mind.</p>
+                    <p>Send us a message and we will assist you with details and availability.</p>
+                </div>
 
                 <div className="flex flex-col md:flex-row gap-6 justify-center items-center mb-16">
                     <a
@@ -26,7 +27,7 @@ const Footer = () => {
                         WhatsApp Us
                     </a>
                     <a
-                        href="mailto:Crossfadearthousea@gmail.com"
+                        href="mailto:crossfadearthouse@gmail.com"
                         className="flex items-center gap-3 border border-pink-pale text-pink-pale px-8 py-3 rounded-full font-serif text-lg hover:bg-pink-pale hover:text-green-deep transition-all duration-300"
                     >
                         <Mail size={24} />
@@ -37,7 +38,7 @@ const Footer = () => {
                 <div className="flex flex-col md:flex-row justify-between items-end border-t border-green-light/30 pt-8 text-green-light/90 text-base font-sans gap-8">
                     <div className="flex flex-col text-left">
                         <p className="mb-2 uppercase tracking-widest text-pink-hot font-bold">Location</p>
-                        <p className="font-medium">No Permanent Store.<br />We are everywhere (mostly client venues & pop-ups).</p>
+                        <p className="font-medium">Crossfade Art House currently operates through curated pop-up sessions hosted at selected venues.<br />Event locations are shared with participants upon booking.</p>
                     </div>
                     <div className="text-center md:text-right font-medium">
                         <p>&copy; {new Date().getFullYear()} Crossfade Art House.</p>

@@ -26,16 +26,16 @@ const GalleryTeaser = () => {
                         viewport={{ once: true }}
                         className="font-disco text-pink-pale text-xl tracking-widest block mb-4"
                     >
-                        Our Portfolio
+                        Studio Portfolio
                     </motion.span>
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-5xl md:text-7xl font-serif mb-8 leading-tight"
+                        className="text-4xl md:text-6xl font-serif mb-8 leading-tight"
                     >
-                        Come see what<br /> we've done.
+                        A glimpse into what happens when people slow down and work with their hands.
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0 }}
@@ -44,7 +44,7 @@ const GalleryTeaser = () => {
                         transition={{ delay: 0.2 }}
                         className="text-green-light/80 text-xl font-sans max-w-md mb-10"
                     >
-                        A curated collection of our best messes and masterpieces. From the kiln straight to your screen.
+                        From first attempts to refined forms, these pieces document the quiet transformation of clay into something lasting.
                     </motion.p>
 
                     <motion.button
