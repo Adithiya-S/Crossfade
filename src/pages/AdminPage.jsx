@@ -97,7 +97,7 @@ const AdminPage = () => {
     const handleCreate = (type) => {
         setEditingType(type);
         if (type === 'workshop') {
-            setCurrentData({ title: '', category: '', date: '', location: '', image: '', desc: '', spots: '', price: '' });
+            setCurrentData({ title: '', category: '', date: '', location: '', image: '', description: '', spots: '', price: '', duration: '' });
         } else {
             setCurrentData({ title: '', excerpt: '', content: '', image_url: '' });
         }
@@ -244,7 +244,7 @@ const AdminPage = () => {
                                                 {workshop.image_url ? <img src={workshop.image_url} alt="" className="w-full h-full object-cover" /> : <div className="flex items-center justify-center h-full text-gray-300"><ImageIcon size={30} /></div>}
                                             </div>
                                             <h3 className="font-serif text-xl text-green-deep mb-2">{workshop.title}</h3>
-                                            <p className="text-sm text-green-mid mb-4 flex-grow">{workshop.category} • ₹{workshop.price} • {workshop.spots || '0'} spots</p>
+                                            <p className="text-sm text-green-mid mb-4 flex-grow">{workshop.category} • {workshop.duration || '2 Hours'} • ₹{workshop.price} • {workshop.spots || '0'} spots</p>
                                             <div className="flex gap-2">
                                                 <button onClick={() => handleEdit('workshop', workshop)} className="flex-1 py-2 bg-pink-pale/30 text-green-deep rounded-full text-sm font-medium hover:bg-pink-pale transition">Edit</button>
                                                 <button onClick={() => handleDelete('workshop', workshop.id)} className="px-4 py-2 bg-red-50 text-red-500 rounded-full hover:bg-red-100 transition"><Trash2 size={16} /></button>
@@ -415,11 +415,12 @@ const AdminPage = () => {
                                 {editingType === 'workshop' && (
                                     <>
                                         <div className="grid grid-cols-2 gap-4">
-                                            <div className="col-span-2"><label className="block text-sm mb-1 text-green-mid">Title</label><input type="text" required value={currentData.title || ''} onChange={e => setCurrentData({ ...currentData, title: e.target.value })} className="w-full px-4 py-2 rounded-xl border bg-gray-50" /></div>
-                                            <div><label className="block text-sm mb-1">Category</label><input type="text" value={currentData.category || ''} onChange={e => setCurrentData({ ...currentData, category: e.target.value })} className="w-full px-4 py-2 rounded-xl border bg-gray-50" /></div>
-                                            <div><label className="block text-sm mb-1">Price</label><input type="text" value={currentData.price || ''} onChange={e => setCurrentData({ ...currentData, price: e.target.value })} className="w-full px-4 py-2 rounded-xl border bg-gray-50" /></div>
-                                            <div><label className="block text-sm mb-1">Spots / Group Size</label><input type="text" value={currentData.spots || currentData.group_size || ''} onChange={e => setCurrentData({ ...currentData, spots: e.target.value, group_size: e.target.value })} className="w-full px-4 py-2 rounded-xl border bg-gray-50" /></div>
-                                            <div className="col-span-2"><label className="block text-sm mb-1">Description</label><textarea rows={3} value={currentData.description || ''} onChange={e => setCurrentData({ ...currentData, description: e.target.value })} className="w-full px-4 py-2 rounded-xl border bg-gray-50 resize-none" /></div>
+                                            <div className="col-span-2"><label className="block text-sm mb-1 text-green-mid">Title</label><input type="text" required value={currentData.title || ''} onChange={e => setCurrentData({ ...currentData, title: e.target.value })} className="w-full px-4 py-2 rounded-xl border bg-gray-50 outline-none focus:border-pink-hot" /></div>
+                                            <div><label className="block text-sm mb-1">Category</label><input type="text" value={currentData.category || ''} onChange={e => setCurrentData({ ...currentData, category: e.target.value })} className="w-full px-4 py-2 rounded-xl border bg-gray-50 outline-none focus:border-pink-hot" /></div>
+                                            <div><label className="block text-sm mb-1">Price</label><input type="text" value={currentData.price || ''} onChange={e => setCurrentData({ ...currentData, price: e.target.value })} className="w-full px-4 py-2 rounded-xl border bg-gray-50 outline-none focus:border-pink-hot" /></div>
+                                            <div><label className="block text-sm mb-1">Duration / Time Taken</label><input type="text" placeholder="e.g. 2.5 Hours" value={currentData.duration || ''} onChange={e => setCurrentData({ ...currentData, duration: e.target.value })} className="w-full px-4 py-2 rounded-xl border bg-gray-50 outline-none focus:border-pink-hot" /></div>
+                                            <div><label className="block text-sm mb-1">Spots / Group Size</label><input type="text" value={currentData.spots || currentData.group_size || ''} onChange={e => setCurrentData({ ...currentData, spots: e.target.value, group_size: e.target.value })} className="w-full px-4 py-2 rounded-xl border bg-gray-50 outline-none focus:border-pink-hot" /></div>
+                                            <div className="col-span-2"><label className="block text-sm mb-1">Description</label><textarea rows={3} value={currentData.description || ''} onChange={e => setCurrentData({ ...currentData, description: e.target.value })} className="w-full px-4 py-2 rounded-xl border bg-gray-50 resize-none outline-none focus:border-pink-hot" /></div>
                                         </div>
                                     </>
                                 )}
