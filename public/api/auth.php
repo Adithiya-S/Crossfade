@@ -10,8 +10,9 @@ function checkAuth($pdo)
         $token = $matches[1];
         $stmt = $pdo->prepare("SELECT id FROM admins WHERE token = ?");
         $stmt->execute([$token]);
-        if ($stmt->fetchColumn()) {
-            return true;
+        $adminId = $stmt->fetchColumn();
+        if ($adminId) {
+            return $adminId; // Return ID instead of true
         }
     }
     http_response_code(401);

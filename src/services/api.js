@@ -267,6 +267,20 @@ const api = {
             body: formData
         });
         return await res.json();
+    },
+
+    updatePassword: async (newPassword) => {
+        if (!IS_PROD) {
+            alert('Password changed in mock mode! (This does not actually save)');
+            return { success: true };
+        }
+
+        const res = await fetch(`${API_BASE}/update_password.php`, {
+            method: 'POST',
+            headers: api.getHeaders(),
+            body: JSON.stringify({ new_password: newPassword })
+        });
+        return await res.json();
     }
 };
 

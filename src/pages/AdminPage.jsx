@@ -16,10 +16,13 @@ const AdminPage = () => {
     const [comments, setComments] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
-    // --- Form Modal State ---
     const [isEditing, setIsEditing] = useState(false);
     const [editingType, setEditingType] = useState('workshop'); // 'workshop' or 'blog'
     const [currentData, setCurrentData] = useState({});
+
+    // --- Password Change State ---
+    const [isChangingPassword, setIsChangingPassword] = useState(false);
+    const [newPassword, setNewPassword] = useState('');
 
     // Check auth on mount
     useEffect(() => {
@@ -60,6 +63,28 @@ const AdminPage = () => {
         api.logout();
         setIsAuthenticated(false);
         setLoginForm({ username: '', password: '' });
+    };
+
+    const handleChangePassword = async (e) => {
+        e.preventDefault();
+        if (newPassword.length < 6) {
+            alert("Password must be at least 6 characters long.");
+            return;
+        }
+
+        try {
+            const res = await api.updatePassword(newPassword);
+            if (res.success) {
+                alert("Password changed successfully! You will need to log in again.");
+                setIsChangingPassword(false);
+                setNewPassword('');
+                handleLogout(); // Force regular re-login using the new pass
+            } else {
+                alert(res.error || "Failed to change password.");
+            }
+        } catch (error) {
+            alert("Error changing password.");
+        }
     };
 
     // --- Generic Modal Handlers ---
@@ -173,9 +198,14 @@ const AdminPage = () => {
                         <span className="font-disco text-pink-hot tracking-widest text-lg mb-2 block">Admin Panel</span>
                         <h1 className="text-4xl md:text-5xl font-serif text-green-deep">Dashboard</h1>
                     </div>
-                    <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 text-green-mid hover:text-red-500 transition-colors bg-white rounded-full shadow-sm">
-                        <LogOut size={16} /> Logout
-                    </button>
+                    <div className="flex gap-4">
+                        <button onClick={() => setIsChangingPassword(true)} className="flex items-center gap-2 px-4 py-2 text-green-deep hover:text-pink-hot transition-colors bg-white rounded-full shadow-sm">
+                            Change Password
+                        </button>
+                        <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2 text-green-mid hover:text-red-500 transition-colors bg-white rounded-full shadow-sm">
+                            <LogOut size={16} /> Logout
+                        </button>
+                    </div>
                 </div>
 
                 {/* Tabs */}
@@ -294,6 +324,37 @@ const AdminPage = () => {
                     </>
                 )}
             </div>
+
+            {/* Password Change Modal */}
+            <AnimatePresence>
+                {isChangingPassword && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+                        <motion.div initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }} className="bg-white rounded-[2rem] p-8 w-full max-w-md shadow-2xl">
+                            <div className="flex justify-between items-center mb-6">
+                                <h2 className="text-2xl font-serif text-green-deep">Change Password</h2>
+                                <button onClick={() => setIsChangingPassword(false)} className="text-gray-400 hover:text-red-500 transition"><X size={24} /></button>
+                            </div>
+                            <form onSubmit={handleChangePassword} className="space-y-4">
+                                <div>
+                                    <label className="block text-sm mb-1 text-green-mid">New Password</label>
+                                    <input
+                                        type="password"
+                                        required
+                                        value={newPassword}
+                                        onChange={e => setNewPassword(e.target.value)}
+                                        className="w-full px-4 py-2 rounded-xl border bg-gray-50 outline-none focus:border-pink-hot transition"
+                                        placeholder="Minimum 6 characters"
+                                    />
+                                </div>
+                                <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 mt-6">
+                                    <button type="button" onClick={() => setIsChangingPassword(false)} className="px-5 py-2 rounded-full text-green-mid hover:bg-gray-100">Cancel</button>
+                                    <button type="submit" className="px-6 py-2 bg-green-deep text-white rounded-full hover:bg-pink-hot">Update</button>
+                                </div>
+                            </form>
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
 
             {/* Universal Edit/Create Form Modal */}
             <AnimatePresence>
